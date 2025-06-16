@@ -1,0 +1,2 @@
+# moneytor-finance-app
+Repository Containing the second version of all the front-end code for the Moneytor Finance Management App using Ionic with Angular and Capacitor.
