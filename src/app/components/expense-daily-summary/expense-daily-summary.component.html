@@ -1,0 +1,27 @@
+<ion-card class="ion-no-padding" color="secondary">
+  <ion-card-content>
+
+    <ion-row style="padding-bottom: 10px; padding-left: 2px;">
+      <ion-col size="12" class="ion-no-padding">
+        <ion-text class="ion-text-center">
+          <h1> Hello, {{ userNameDisplay }}
+          </h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-no-padding">
+      <ion-col size="12" class="ion-no-padding">
+        <ion-text class="ion-text-center">
+          <p style="margin: 0;"> Total Daily Expenses:</p>
+        </ion-text>
+      </ion-col>
+      <ion-col size="12" class="ion-no-padding">
+        <ion-text class="ion-text-center">
+          <h2 style="font-size: large;"> <b> {{ totalDailyExpenses | currency: "₱ " }} </b> </h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
