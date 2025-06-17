@@ -2,3 +2,14 @@
     font-size: 25px;
     float: right;
 }
+
+.calendar-icon {
+    font-size: 22px;
+}
+
+ion-modal::part(content) {
+    width: inherit;
+    height: inherit;
+    border: 0;
+    border-radius: 15px;
+}

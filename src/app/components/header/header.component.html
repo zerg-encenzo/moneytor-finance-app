@@ -4,25 +4,18 @@
       <ion-row>
 
         <!-- Moneytor Title -->
-        <ion-col size="5" class="ion-align-items-center">
-          <ion-title class="ion-no-padding">
-            <div class="title-wrapper">
-              <!-- Turtle Animated Emoji -->
-              <picture class="ion-float-left">
-                <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f422/512.webp" type="image/webp">
-                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f422/512.gif" alt="🐢" width="24" height="24">
-              </picture>
-              <span class="title-text">{{ title }}</span>
-            </div>
+        <ion-col size="12" class="ion-align-items-center">
+          <ion-title class="ion-no-padding title-text custom-alignment">
+            {{ title }}
           </ion-title>
         </ion-col>
 
         <!-- Datetime picker button -->
-        <ion-col size="7" class="ion-no-padding ion-text-end">
+        <!-- <ion-col size="7" class="ion-no-padding ion-text-end">
           <ion-datetime-button datetime="datetime"
-            style="display: flex; justify-content: end; padding-right: 3px;"></ion-datetime-button>
-          <!-- See [header.component.scss] for custom SCSS for ion-datetime-button -->
-        </ion-col>
+            style="display: flex; justify-content: end; padding-right: 3px;"></ion-datetime-button> -->
+        <!-- See [header.component.scss] for custom SCSS for ion-datetime-button -->
+        <!-- </ion-col> -->
 
       </ion-row>
     </ion-grid>
@@ -37,8 +30,7 @@
           month: 'long',
           day: '2-digit',
           year: 'numeric'
-        }}" 
-        (ionChange)="confirmSelectedDate($event)">
+        }}" (ionChange)="confirmSelectedDate($event)">
       <ion-buttons slot="buttons">
         <ion-button color="danger" (click)="datetime.cancel()">Cancel</ion-button>
         <ion-button color="secondary" (click)="datetime.confirm(true)">Confirm</ion-button>

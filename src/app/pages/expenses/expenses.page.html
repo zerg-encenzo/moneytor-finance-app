@@ -1,0 +1,46 @@
+<div class="sticky-header hide-on-web">
+  <!-- MOBILE: Daily Summary & Filter Options -->
+  <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
+  <!-- MOBILE: Searchbar -->
+  <ion-searchbar [debounce]="300" class="ion-no-padding searchbar-no-shadow" [placeholder]="searchbarPlaceholder"
+    (ionInput)="handleSearchInput($event)">
+  </ion-searchbar>
+</div>
+
+<ion-content [fullscreen]="true">
+  <ion-grid fixed>
+    <ion-row>
+
+      <!-- Left Info section -->
+      <ion-col size="12" sizeLg="4" class="ion-no-padding hide-on-mobile">
+        <!-- WEB: Daily Summary & Filter Options -->
+        <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
+        <!-- WEB: Searchbar -->
+        <ion-searchbar [debounce]="300" class="searchbar-no-shadow" style="padding-left: 11px; padding-right: 11px;"
+          [placeholder]="searchbarPlaceholder" (ionInput)="handleSearchInput($event)">
+        </ion-searchbar>
+      </ion-col>
+
+      <!-- expense list section -->
+      <ion-col size="12" sizeLg="8">
+        <app-expense-list [expenseListDisplay]="expenseListFiltered"></app-expense-list>
+
+        <ion-button (click)="login()" expand="block" fill="clear" shape="round">
+          Login
+        </ion-button>
+
+        <ion-button (click)="request()" expand="block" fill="clear" shape="round">
+          Get Expense Category
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+<!-- Expense input -->
+<!-- <ion-footer class="ion-no-padding">
+  <ion-toolbar class="ion-no-padding">
+    <app-expense-input (expenseAdded)="addNewExpense($event)"></app-expense-input>
+  </ion-toolbar>
+</ion-footer> -->

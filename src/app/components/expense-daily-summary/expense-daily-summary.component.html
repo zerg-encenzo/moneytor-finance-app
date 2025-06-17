@@ -1,27 +1,65 @@
-<ion-card class="ion-no-padding" color="secondary">
+<ion-card class="ion-no-padding" color="secondary" (click)="openDatePickerModal()">
   <ion-card-content>
 
-    <ion-row style="padding-bottom: 10px; padding-left: 2px;">
-      <ion-col size="12" class="ion-no-padding">
-        <ion-text class="ion-text-center">
-          <h1> Hello, {{ userNameDisplay }}
-          </h1>
+    <!-- Name & Calendar Sectiob -->
+    <ion-row style="padding-bottom: 20px;">
+
+      <!-- Greetings with User Name -->
+      <ion-col size="10" class="ion-no-padding">
+        <ion-text class="ion-text-start">
+          <h1> Hello, {{ userNameDisplay }}</h1>
+        </ion-text>
+      </ion-col>
+      <!-- Calendar Icon -->
+      <ion-col size="2" class="ion-no-padding ion-text-end">
+        <ion-icon name="calendar" class="calendar-icon"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <!--Date Section:  -->
+    <ion-row class="ion-no-padding" style="padding-bottom: 2px;">
+      <ion-col size="4" class="ion-no-padding">
+        <ion-text class="ion-text-start">
+          <ion-icon slot="start" name="calendar"></ion-icon>
+          <p style="margin: 0;"> Date: </p>
+        </ion-text>
+      </ion-col>
+      <ion-col size="8" class="ion-no-padding">
+        <ion-text class="ion-text-end">
+          <h2> <b> {{ selectedDate | date: "MMMM dd, YYYY"}} </b> </h2>
         </ion-text>
       </ion-col>
     </ion-row>
 
-
+    <!-- Total Daily Expenses Section -->
     <ion-row class="ion-no-padding">
-      <ion-col size="12" class="ion-no-padding">
-        <ion-text class="ion-text-center">
-          <p style="margin: 0;"> Total Daily Expenses:</p>
+      <ion-col size="7" class="ion-no-padding">
+        <ion-text class="ion-text-start">
+          <p style="margin: 0;">Total Daily Expenses:</p>
         </ion-text>
       </ion-col>
-      <ion-col size="12" class="ion-no-padding">
-        <ion-text class="ion-text-center">
-          <h2 style="font-size: large;"> <b> {{ totalDailyExpenses | currency: "₱ " }} </b> </h2>
+      <ion-col size="5" class="ion-no-padding">
+        <ion-text class="ion-text-end">
+          <h2> <b> {{ totalDailyExpenses | currency: "₱ " }} </b> </h2>
         </ion-text>
       </ion-col>
     </ion-row>
+
   </ion-card-content>
 </ion-card>
+
+<ion-modal #dateModal >
+  <ng-template>
+    <ion-datetime [showDefaultTitle]="true" #datetime id="datetime" presentation="date" color="secondary" [formatOptions]="{
+        date: {
+          month: 'long',
+          day: '2-digit',
+          year: 'numeric'
+        }}" (ionChange)="confirmSelectedDate($event)">
+      <ion-buttons slot="buttons">
+        <ion-button color="danger" (click)="datetime.cancel(true)">Cancel</ion-button>
+        <ion-button color="secondary" (click)="datetime.confirm(true)">Confirm</ion-button>
+      </ion-buttons>
+    </ion-datetime>
+  </ng-template>
+</ion-modal>

@@ -1,40 +1,26 @@
 <app-header [title]="title"></app-header>
 
-<div class="sticky-header hide-on-web">
-  <!-- Mobile: Daily Summary & Filter Options -->
-  <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
-
-  <!-- Mobile: Searchbar -->
-  <ion-searchbar [debounce]="300" class="ion-no-padding searchbar-no-shadow"
-    [placeholder]="searchbarPlaceholder"
-    (ionInput)="handleSearchInput($event)">
-  </ion-searchbar>
-</div>
-
-<ion-content [fullscreen]="true">
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col size="12" sizeLg="4" class="ion-no-padding hide-on-mobile">
-
-        <!-- Web: Daily Summary & Filter Options -->
-        <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
-
-        <!-- Web: Searchbar -->
-        <ion-searchbar [debounce]="300" class="searchbar-no-shadow" style="padding-left: 11px; padding-right: 11px;"
-          [placeholder]="searchbarPlaceholder"
-          (ionInput)="handleSearchInput($event)">
-        </ion-searchbar>
-      </ion-col>
-      <ion-col size="12" sizeLg="8">
-        <app-expense-list [expenseListDisplay]="expenseListFiltered"></app-expense-list>
-      </ion-col>
-    </ion-row>
-
-  </ion-grid>
+<ion-content>
+  <app-expenses></app-expenses>
 </ion-content>
 
-<ion-footer class="ion-no-padding">
-  <ion-toolbar class="ion-no-padding">
-    <app-expense-input (expenseAdded)="addNewExpense($event)"></app-expense-input>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row>
+
+        <!-- TAB BUTTONS -->
+        @for(btn of tabButtons; track btn){
+        <ion-col size="4" class="ion-no-padding">
+          <ion-button (click)="toogleTab(btn)" expand="block" color="secondary"
+            [fill]="currentTab == btn.name ? 'solid' : 'clear'">
+            <ion-icon slot="start" [name]="btn.ionicon"></ion-icon>
+            {{ btn.name }}
+          </ion-button>
+        </ion-col>
+        }
+
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>
