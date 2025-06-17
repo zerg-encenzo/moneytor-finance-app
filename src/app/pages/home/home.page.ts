@@ -1,74 +1,88 @@
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
 
-//Components:
+//Header Component:
 import { HeaderComponent } from "../../components/header/header.component";
-import { IonContent, IonTitle, IonFooter, IonToolbar, IonCardContent, IonCardSubtitle, IonCardHeader, IonCard, IonCardTitle, IonGrid, IonRow, IonCol, IonItemDivider, IonLabel, IonSearchbar, IonHeader, IonModal, IonButtons, IonButton, IonItem, IonInput } from "@ionic/angular/standalone";
-import { ExpenseInputComponent } from "../../components/expense-input/expense-input.component";
-import { ExpenseListComponent } from "../../components/expense-list/expense-list.component";
-import { ExpenseDailySummaryComponent } from "../../components/expense-daily-summary/expense-daily-summary.component";
-import { Expenses, ExpenseType } from 'src/app/interfaces/expenses';
-import { FormsModule } from '@angular/forms';
+
+//Pages:
+import { ExpensesPage } from "../expenses/expenses.page";
+import { IonContent, IonTitle, IonToolbar, IonFooter, IonGrid, IonRow, IonCol, IonButton, IonIcon } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [FormsModule, IonInput, IonItem, IonButton, IonButtons, IonModal, IonHeader, IonSearchbar, IonLabel, IonItemDivider, IonCol, IonRow, IonGrid, IonCardTitle, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonToolbar, IonFooter, IonTitle, IonContent, HeaderComponent, ExpenseInputComponent, ExpenseListComponent, ExpenseDailySummaryComponent],
+  imports: [IonIcon, IonButton, IonCol, IonRow, IonGrid, IonFooter, IonToolbar, IonTitle, IonContent, HeaderComponent, ExpensesPage],
 })
 export class HomePage {
 
   public title: string = 'Moneytor';
-
-  public expenseList: Expenses[] = [
+  public currentTab: string = 'Expenses';
+  public tabButtons: TabButton[] = [
     {
-      Ionicon: 'fast-food',
-      Category: 'Food',
-      Amount: 150,
-      Remarks: 'Lunch at the new cafe',
-      Type: ExpenseType.VariableExpenses,
-      Source: 'Cash',
-      Date: new Date()
+      name: "Expenses",
+      ionicon: "cart-outline"
     },
     {
-      Ionicon: 'restaurant',
-      Category: 'Dining Out',
-      Amount: 200,
-      Remarks: 'Dinner with friends',
-      Type: ExpenseType.VariableExpenses,
-      Source: 'SeaBank',
-      Date: new Date()
+      name: "Budgets",
+      ionicon: "bar-chart-outline"
     },
     {
-      Ionicon: 'pizza',
-      Category: 'Snacks',
-      Amount: 50,
-      Remarks: 'Evening snacks',
-      Type: ExpenseType.VariableExpenses,
-      Source: 'Metrobank',
-      Date: new Date()
-    }
-  ];
+      name: "Savings",
+      ionicon: "cash-outline"
+    },
+  ]
 
-  //Searchbar Parameters:
-  public expenseListFiltered: Expenses[] = [... this.expenseList];
+  constructor(
+    private api: ApiService,
+    private router: Router,
+  ) {}
 
-
-  //Searchbar Parameters:
-  public searchbarPlaceholder: string = 'Find Item';
-  constructor() {}
-
-
-
-  addNewExpense(expense: Expenses) {
-    // this.expenseList.unshift(expense); // Add new expense to the beginning of the list
-    this.expenseList = [expense, ...this.expenseList]; // Add new expense to the beginning of the list
-    this.expenseListFiltered = [...this.expenseList]; // Reset the filtered list to include the new expense
+login() {
+    this.api.autoLoginTest().subscribe({
+      next: (data) => {
+        console.log('Auto Login Test Data:', data);
+        //Store user info to local Storage:
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        
+      },
+      error: (error) => {
+        console.error('Error during auto login test:', error);
+      }
+    });
   }
 
-  handleSearchInput(event: Event) {
-    const targent = event.target as HTMLIonSearchbarElement;
-    const query = targent.value?.toLowerCase() || '';
-    this.expenseListFiltered = this.expenseList.filter(expense => expense.Category.toLowerCase().includes(query) ||
-      expense.Remarks.toLowerCase().includes(query));
+  getExpenseCategoriesFromServer() {
+    this.api.getData('/Moneytor/ExpenseCategory').subscribe({
+      next: (data) => {
+        console.log('Expense Categories From Server:', data);
+        // You can process the data here if needed
+      },
+      error: (error) => {
+        console.error('Error fetching expense categories:', error);
+      }
+    });
   }
+
+  toogleTab(btn: TabButton){
+    this.currentTab = btn.name;
+    console.log(btn);
+  }
+
+  viewBudgetDetails() {
+    this.router.navigate(['/budgets']);
+  }
+
+
+  request(){
+    this.getExpenseCategoriesFromServer();
+  }
+}
+
+
+//INTERFACES:
+interface TabButton {
+  name: string;
+  ionicon: string;
 }

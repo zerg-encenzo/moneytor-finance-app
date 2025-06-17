@@ -19,3 +19,14 @@ ion-modal::part(content) {
     border: 0;
     border-radius: 15px;
 }
+
+.custom-alignment {
+    //Mobile view
+    @media (max-width: 995px) {
+        text-align: center;
+    }
+    //Web view
+    @media (min-width: 996px) {
+        text-align: start;
+    }
+}
