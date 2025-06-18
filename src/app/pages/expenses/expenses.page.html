@@ -1,42 +1,49 @@
 <div class="sticky-header hide-on-web">
-  <!-- MOBILE: Daily Summary & Filter Options -->
-  <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
-  <!-- MOBILE: Searchbar -->
-  <ion-searchbar [debounce]="300" class="ion-no-padding searchbar-no-shadow" [placeholder]="searchbarPlaceholder"
-    (ionInput)="handleSearchInput($event)">
-  </ion-searchbar>
+  <!-- <div class="sticky-wrapper hide-on-web"> -->
+  <div class="sticky-inner">
+    <!-- MOBILE: Daily Summary & Filter Options -->
+    <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
+    <!-- MOBILE: Add Expense -->
+    <ion-button expand="block" fill="outline" color="secondary" class="add-expense-button" (click)="openAddExpenseInputModal()">
+      Add Expense
+    </ion-button>
+    <!-- MOBILE: Searchbar -->
+    <ion-searchbar #searchBarMobile [debounce]="searchDebouce" class="ion-no-padding searchbar-no-shadow" [placeholder]="searchbarPlaceholder"
+      (ionInput)="handleSearchInput($event)">
+    </ion-searchbar>
+  </div>
 </div>
 
-<ion-content [fullscreen]="true">
-  <ion-grid fixed>
-    <ion-row>
+<ion-grid fixed>
+  <ion-row>
+    <!-- LEFT SIDE: summary section -->
+    <ion-col size="12" sizeLg="4" class="ion-no-padding hide-on-mobile">
+      <!-- WEB: Daily Summary & Filter Options -->
+      <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
+      <!-- MOBILE: Add Expense -->
+      <ion-button expand="block" fill="outline" color="secondary" class="add-expense-button" (click)="openAddExpenseInputModal()">
+        Add Expense
+      </ion-button>
+      <!-- WEB: Searchbar -->
+      <ion-searchbar #searchBarWeb [debounce]="searchDebouce" class="searchbar-no-shadow" style="padding-left: 11px; padding-right: 11px;"
+        [placeholder]="searchbarPlaceholder" (ionInput)="handleSearchInput($event)">
+      </ion-searchbar>
+    </ion-col>
 
-      <!-- Left Info section -->
-      <ion-col size="12" sizeLg="4" class="ion-no-padding hide-on-mobile">
-        <!-- WEB: Daily Summary & Filter Options -->
-        <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
-        <!-- WEB: Searchbar -->
-        <ion-searchbar [debounce]="300" class="searchbar-no-shadow" style="padding-left: 11px; padding-right: 11px;"
-          [placeholder]="searchbarPlaceholder" (ionInput)="handleSearchInput($event)">
-        </ion-searchbar>
-      </ion-col>
-
-      <!-- expense list section -->
-      <ion-col size="12" sizeLg="8">
-        <app-expense-list [expenseListDisplay]="expenseListFiltered"></app-expense-list>
-
+    <!-- RIGHT SIDE: expense list section -->
+    <ion-col size="12" sizeLg="8" class="ion-no-padding scrollable-list-area">
         <ion-button (click)="login()" expand="block" fill="clear" shape="round">
           Login
         </ion-button>
-
+        <app-expense-list [expenseListDisplay]="expenseListFiltered"></app-expense-list>
         <ion-button (click)="request()" expand="block" fill="clear" shape="round">
           Get Expense Category
         </ion-button>
-      </ion-col>
-    </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
-  </ion-grid>
-</ion-content>
+
 
 <!-- Expense input -->
 <!-- <ion-footer class="ion-no-padding">

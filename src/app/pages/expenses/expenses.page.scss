@@ -2,13 +2,35 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    /* higher than ion-content scroll */
     background: #f8f8f8;
-    /* or white, to prevent bleed-through */
+}
+
+.sticky-inner {
+    position: sticky;
+    top: 56px; // Adjust depending on the height of your ion-header
+    z-index: 99;
+    background: #f8f8f8;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .searchbar-no-shadow {
     border-radius: 0;
     --border-style: none;
     padding-top: 3px;
+}
+
+.scrollable-list-area {
+    @media (min-width: 996px) {
+        height: calc(100vh - 65px - 65px); // subtract header and footer height (adjust if needed)
+        overflow-y: auto;
+        padding-bottom: 16px; // add space above footer
+    }
+}
+
+.add-expense-button {
+    padding-top: 5px;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-bottom: 9px;
 }

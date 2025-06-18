@@ -25,7 +25,8 @@ export class ExpenseDailySummaryComponent implements OnInit {
 
   //Display Properties:
   public totalDailyExpenses: number = 0;
-  public selectedDate: Date = new Date();
+  public selectedDate: Date = new Date;
+
   public userNameDisplay: string = UserProfile.UserFirstName //+ ' ' + UserProfile.UserLastName; //Display user name in the summary
 
   constructor(
@@ -66,6 +67,6 @@ export class ExpenseDailySummaryComponent implements OnInit {
 
   confirmSelectedDate(event: any) {
     console.log('Selected Date:', event.detail.value);
-    this.selectedDate = event.detail.value;
+    this.selectedDate = event.detail.value || new Date();
   }
 }

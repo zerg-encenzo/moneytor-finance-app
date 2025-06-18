@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <ion-title class="ion-no-padding" style="padding-left: 5px;">
+            <ion-icon name="arrow-back" style="font-size: 20px; padding-right: 15px;" class="ion-float-left"></ion-icon>
+            Add Expense
+          </ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top">
+  <ion-grid fixed>
+    <ion-row>
+      <!-- Fund Source Selection -->
+      <ion-col size="12">
+        <ion-select interface="popover" label="Source" label-placement="floating" fill="outline" required="true"
+          (ionChange)="onFundSourceChange($event)" [(ngModel)]="selectedFundSource">
+          @for (fundSource of fundSources; track fundSource) {
+          <ion-select-option [value]="fundSource.Name"> {{ fundSource.Name }}</ion-select-option>
+          }
+        </ion-select>
+      </ion-col>
+
+      <!-- Expense Type Selection -->
+      <ion-col size="12">
+        <ion-select interface="popover" label="Type" label-placement="floating" fill="outline" required="true"
+          (ionChange)="onExpenseTypeChange($event)" [(ngModel)]="selectedExpenseType">
+          @for (expense of expenseType; track expense) {
+          <ion-select-option [value]="expense.Name"> {{ expense.Name }}</ion-select-option>
+          }
+        </ion-select>
+      </ion-col>
+
+      <!-- Category Selection -->
+      <ion-col size="12">
+        <ion-select interface="popover" label="Category" label-placement="floating" fill="outline" required="true"
+          (ionChange)="onCategoryChange($event)" [(ngModel)]="selectedCategory.Category"
+          [disabled]="(selectedExpenseType == null || selectedExpenseType=='')">
+          @for (category of Categories; track category) {
+          <ion-select-option [value]="category.Category">{{ category.Category }}</ion-select-option>
+          }
+        </ion-select>
+      </ion-col>
+
+      <!-- Remarks / Description Input -->
+      <ion-col size="12">
+        <ion-input label="Remarks (Optional)" label-placement="floating" fill="outline"
+          placeholder="Describe Expense Details" [disabled]="(selectedExpenseType == null || selectedExpenseType=='')"
+          [(ngModel)]="expenseRemarks"></ion-input>
+      </ion-col>
+
+      <!-- Amount Input -->
+      <ion-col size="12">
+        <ion-input label="Amount (Php)" label-placement="floating" fill="outline" placeholder="Enter Expense Amount"
+          type="number" required="true" [disabled]="(selectedExpenseType == null || selectedExpenseType=='')"
+          [(ngModel)]="expenseAmount"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- FOOTER SECTION -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row>
+        <!-- Submit Button -->
+        <ion-col size="12">
+          <ion-button expand="block" color="secondary"
+            [disabled]="!selectedExpenseType || !Categories.length || !expenseAmount || expenseAmount <= 0"
+            (click)="addExpense()">
+            <ion-icon slot="start" name="save" class="ion-no-padding"></ion-icon> Submit
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
