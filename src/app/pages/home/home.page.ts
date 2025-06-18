@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
-import { Router } from '@angular/router';
-
 //Header Component:
 import { HeaderComponent } from "../../components/header/header.component";
 
 //Pages:
 import { ExpensesPage } from "../expenses/expenses.page";
-import { IonContent, IonTitle, IonToolbar, IonFooter, IonGrid, IonRow, IonCol, IonButton, IonIcon } from "@ionic/angular/standalone";
+import { BudgetsPage } from "../budgets/budgets.page";
+import { SavingsPage } from "../savings/savings.page";
+
+import { Component } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { IonContent, IonToolbar, IonFooter, IonGrid, IonRow, IonCol, IonButton, IonIcon } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonIcon, IonButton, IonCol, IonRow, IonGrid, IonFooter, IonToolbar, IonTitle, IonContent, HeaderComponent, ExpensesPage],
+  imports: [IonIcon, IonButton, IonCol, IonRow, IonGrid, IonFooter, IonToolbar, IonContent, HeaderComponent, ExpensesPage, CommonModule, BudgetsPage, SavingsPage],
 })
 export class HomePage {
 

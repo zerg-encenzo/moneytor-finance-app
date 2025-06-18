@@ -55,7 +55,7 @@
           month: 'long',
           day: '2-digit',
           year: 'numeric'
-        }}" (ionChange)="confirmSelectedDate($event)">
+        }}" (ionChange)="confirmSelectedDate($event)" [value]="selectedDate | date: 'yyyy-MM-dd'">
       <ion-buttons slot="buttons">
         <ion-button color="danger" (click)="datetime.cancel(true)">Cancel</ion-button>
         <ion-button color="secondary" (click)="datetime.confirm(true)">Confirm</ion-button>

@@ -1,7 +1,20 @@
 <app-header [title]="title"></app-header>
 
 <ion-content>
-  <app-expenses></app-expenses>
+  <!-- EXPENSES PAGE -->
+  <span *ngIf="currentTab == tabButtons[0].name">
+    <app-expenses></app-expenses>
+  </span>
+
+  <!-- BUDGETS PAGE -->
+  <span *ngIf="currentTab == tabButtons[1].name">
+    <app-budgets></app-budgets>
+  </span>
+
+  <!-- SAVINGS PAGE -->
+  <span *ngIf="currentTab == tabButtons[2].name">
+    <app-savings></app-savings>
+  </span>
 </ion-content>
 
 <ion-footer>
@@ -11,7 +24,7 @@
 
         <!-- TAB BUTTONS -->
         @for(btn of tabButtons; track btn){
-        <ion-col size="4" class="ion-no-padding">
+        <ion-col [size]="12/tabButtons.length" class="ion-no-padding">
           <ion-button (click)="toogleTab(btn)" expand="block" color="secondary"
             [fill]="currentTab == btn.name ? 'solid' : 'clear'">
             <ion-icon slot="start" [name]="btn.ionicon"></ion-icon>
