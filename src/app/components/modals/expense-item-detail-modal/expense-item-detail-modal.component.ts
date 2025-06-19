@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonTitle, IonContent, IonHeader, IonToolbar, IonFooter, NavParams, IonIcon, IonText, IonGrid, IonCol, IonRow, IonList, IonLabel, IonItem, IonInput, IonButton, ModalController } from "@ionic/angular/standalone";
-import { Expenses } from 'src/app/interfaces/expenses';
+import { Expenses } from 'src/app/interfaces/expenses.interface';
 
 @Component({
   selector: 'app-expense-item-detail-modal',
@@ -16,7 +16,7 @@ export class ExpenseItemDetailModalComponent implements OnInit {
 
   public itemCategory: string;
   public itemAmount: number;
-  public itemRemarks: string;
+  public itemRemarks: string | null;
   public itemType: string;
   public itemIonicon: string;
   public itemSourceOfFund: string;
@@ -27,10 +27,18 @@ export class ExpenseItemDetailModalComponent implements OnInit {
   public isList: boolean = true;
   public isEditing: boolean = false;
 
+  //Editing buttons
+  button: any = {
+    edit: editingbuttons.Edit,
+    save: editingbuttons.Save,
+    discard: editingbuttons.Discard,
+    delete: editingbuttons.Delete
+  }
+
 
   constructor(
     private navParams: NavParams,
-    private modal: ModalController
+    private itemDetailModal: ModalController
   ) {
     this.expenseItem = this.navParams.get('expenseItem');
     console.log('Expense Item:', this.expenseItem);
@@ -45,12 +53,35 @@ export class ExpenseItemDetailModalComponent implements OnInit {
     this.itemIonicon = this.expenseItem.Ionicon;
     this.itemSourceOfFund = this.expenseItem.Source;
     this.itemExpenseDate = this.expenseItem.Date.toISOString().split('T')[0]; // Format date to YYYY-MM-DD
-  } 
+  }
 
   ngOnInit() { }
 
+  editExpense(state: string) {
+    switch (state) {
+      case (editingbuttons.Edit):
+        this.isEditing = true;
+        return;
+      case (editingbuttons.Save):
+        this.isEditing = false;
+        return;
+      case (editingbuttons.Discard):
+        this.isEditing = false;
+        return;
+      case (editingbuttons.Delete):
+        this.isEditing = false;
+        return;
+    }
+  }
 
   public async dismissModal() {
-    await this.modal.dismiss();
+    await this.itemDetailModal.dismiss();
   }
+}
+
+class editingbuttons {
+    static Edit: string = 'Edit';
+    static Save: string = 'Save';
+    static Discard: string = 'Discard';
+    static Delete: string = 'Delete';
 }
