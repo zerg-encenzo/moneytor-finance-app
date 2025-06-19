@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonCardSubtitle, IonCard, IonCardHeader, IonCardContent, IonInput, IonCol, IonRow, IonSelect, IonSelectOption, IonTitle, IonContent, IonLabel, IonItem, IonToolbar, IonFooter, IonIcon, IonButton, IonGrid, IonHeader, ModalController } from "@ionic/angular/standalone";
+import { IonInput, IonCol, IonRow, IonSelect, IonSelectOption, IonTitle, IonContent, IonToolbar, IonFooter, IonIcon, IonButton, IonGrid, IonHeader, ModalController } from "@ionic/angular/standalone";
 import { FormsModule } from '@angular/forms';
 import { ExpenseInput, CategoryInterface } from 'src/app/interfaces/expenses.interface';
 
@@ -9,7 +9,7 @@ import { ExpenseInput, CategoryInterface } from 'src/app/interfaces/expenses.int
   templateUrl: './expense-addition-input-modal.component.html',
   styleUrls: ['./expense-addition-input-modal.component.scss'],
   standalone: true,
-  imports: [IonHeader, IonGrid, IonButton, IonIcon, IonFooter, IonToolbar, IonItem, IonLabel, IonContent, IonTitle, IonRow, IonCol, IonInput, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonSelect, IonSelectOption, FormsModule]
+  imports: [IonHeader, IonGrid, IonButton, IonIcon, IonFooter, IonToolbar, IonContent, IonTitle, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, FormsModule]
 })
 
 export class ExpenseAdditionInputModalComponent implements OnInit {

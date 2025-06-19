@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { IonCardContent, IonCardSubtitle, IonCardHeader, IonCard, IonCardTitle, IonIcon, IonRow, IonCol, IonText, IonLabel, IonButton, ModalController, IonDatetimeButton, IonModal, IonDatetime, IonGrid, IonButtons } from "@ionic/angular/standalone";
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { IonCardContent, IonCard, IonIcon, IonRow, IonCol, IonText, IonButton, ModalController, IonModal, IonDatetime, IonButtons } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 import { Expenses } from 'src/app/interfaces/expenses.interface';
 import { UserProfile } from 'src/app/interfaces/user-profile';
@@ -9,7 +9,7 @@ import { UserProfile } from 'src/app/interfaces/user-profile';
   templateUrl: './expense-daily-summary.component.html',
   styleUrls: ['./expense-daily-summary.component.scss'],
   standalone: true,
-  imports: [IonButtons, IonGrid, IonDatetime, IonModal, IonDatetimeButton, IonButton, IonLabel, IonText, IonCol, IonRow, IonIcon, IonCardTitle, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, CommonModule]
+  imports: [IonButtons, IonDatetime, IonModal, IonButton, IonText, IonCol, IonRow, IonIcon, IonCard, IonCardContent, CommonModule]
 })
 export class ExpenseDailySummaryComponent implements OnInit {
 

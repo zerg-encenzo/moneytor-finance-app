@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 //Components:
-import { HeaderComponent } from "../../components/header/header.component";
-import { IonContent, IonTitle, IonFooter, IonToolbar, IonCardContent, IonCardSubtitle, IonCardHeader, IonCard, IonCardTitle, IonGrid, IonRow, IonCol, IonItemDivider, IonLabel, IonSearchbar, IonHeader, IonModal, IonButtons, IonButton, IonItem, IonInput, IonIcon, ModalController } from "@ionic/angular/standalone";
+import { IonGrid, IonRow, IonCol, IonSearchbar, IonButton, ModalController } from "@ionic/angular/standalone";
 import { ExpenseListComponent } from "../../components/expense-list/expense-list.component";
 import { ExpenseDailySummaryComponent } from "../../components/expense-daily-summary/expense-daily-summary.component";
 import { ExpenseInput, Expenses, ExpenseType } from 'src/app/interfaces/expenses.interface';
 import { FormsModule } from '@angular/forms';
-import { RxjsLearningComponent } from "../../rxjs-components/rxjs-learning/rxjs-learning.component";
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -18,9 +16,7 @@ import { ExpenseAdditionInputModalComponent } from 'src/app/components/modals/ex
   templateUrl: './expenses.page.html',
   styleUrls: ['./expenses.page.scss'],
   standalone: true,
-  imports: [IonIcon, FormsModule, IonInput, IonItem, IonButton, IonButtons, IonModal, IonHeader, IonSearchbar, IonLabel, IonItemDivider, IonCol, IonRow, IonGrid,
-    IonCardTitle, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonToolbar, IonFooter, IonTitle, IonContent, HeaderComponent, ExpenseListComponent,
-    ExpenseDailySummaryComponent, RxjsLearningComponent, CommonModule],
+  imports: [FormsModule, IonButton, IonSearchbar, IonCol, IonRow, IonGrid, ExpenseListComponent, ExpenseDailySummaryComponent, CommonModule],
 })
 export class ExpensesPage implements OnInit {
 
