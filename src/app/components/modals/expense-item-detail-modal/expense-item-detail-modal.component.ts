@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonTitle, IonContent, IonHeader, IonToolbar, IonFooter, NavParams, IonIcon, IonText, IonGrid, IonCol, IonRow, IonList, IonLabel, IonItem, IonInput, IonButton, ModalController } from "@ionic/angular/standalone";
+import { IonTitle, IonContent, IonHeader, IonToolbar, IonFooter, NavParams, IonIcon, IonGrid, IonCol, IonRow, IonList, IonLabel, IonItem, IonInput, IonButton, ModalController } from "@ionic/angular/standalone";
 import { Expenses } from 'src/app/interfaces/expenses.interface';
 
 @Component({
@@ -8,7 +8,7 @@ import { Expenses } from 'src/app/interfaces/expenses.interface';
   templateUrl: './expense-item-detail-modal.component.html',
   styleUrls: ['./expense-item-detail-modal.component.scss'],
   standalone: true,
-  imports: [IonButton, IonInput, IonItem, IonLabel, IonList, IonRow, IonCol, IonGrid, IonText, IonIcon, IonFooter, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule]
+  imports: [IonButton, IonInput, IonItem, IonLabel, IonList, IonRow, IonCol, IonGrid, IonIcon, IonFooter, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule]
 })
 export class ExpenseItemDetailModalComponent implements OnInit {
 

@@ -1,6 +1,6 @@
-import { Component, input, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonCardSubtitle, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon, IonLabel, IonItem, IonList, IonGrid, IonCol, IonRow, ModalController } from "@ionic/angular/standalone";
+import { IonIcon, IonLabel, IonItem, IonList, IonGrid, IonCol, IonRow, ModalController } from "@ionic/angular/standalone";
 import { Expenses } from 'src/app/interfaces/expenses.interface';
 import { ExpenseItemDetailModalComponent } from '../modals/expense-item-detail-modal/expense-item-detail-modal.component';
 
@@ -9,7 +9,7 @@ import { ExpenseItemDetailModalComponent } from '../modals/expense-item-detail-m
   templateUrl: './expense-list.component.html',
   styleUrls: ['./expense-list.component.scss'],
   standalone: true,
-  imports: [IonRow, IonCol, IonGrid, IonList, IonItem, IonLabel, IonIcon, CommonModule, IonButton, IonCardContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle]
+  imports: [IonRow, IonCol, IonGrid, IonList, IonItem, IonLabel, IonIcon, CommonModule]
 })
 export class ExpenseListComponent implements OnInit {
 

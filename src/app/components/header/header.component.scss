@@ -1,32 +1,17 @@
-ion-datetime-button::part(native) {
-    background: 0;
-    border: 2px solid var(--ion-color-light);
-    color: var(--ion-color-light);
-}
-
-.title-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px; // space between icon and text
-}
-
 .title-text {
     font-size: 22px; // or match your existing title size
     font-weight: lighter;
 }
 
-ion-modal::part(content) {
-    border: 0;
-    border-radius: 15px;
-}
-
 .custom-alignment {
-    //Mobile view
+    //Mobile view: Allign center
     @media (max-width: 995px) {
         text-align: center;
     }
-    //Web view
+
+    //Web view: Align left
     @media (min-width: 996px) {
         text-align: start;
+        padding-left: 10px;
     }
 }

@@ -2,39 +2,13 @@
   <ion-toolbar color="secondary">
     <ion-grid fixed>
       <ion-row>
-
         <!-- Moneytor Title -->
         <ion-col size="12" class="ion-align-items-center">
           <ion-title class="ion-no-padding title-text custom-alignment">
             {{ title }}
           </ion-title>
         </ion-col>
-
-        <!-- Datetime picker button -->
-        <!-- <ion-col size="7" class="ion-no-padding ion-text-end">
-          <ion-datetime-button datetime="datetime"
-            style="display: flex; justify-content: end; padding-right: 3px;"></ion-datetime-button> -->
-        <!-- See [header.component.scss] for custom SCSS for ion-datetime-button -->
-        <!-- </ion-col> -->
-
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-header>
-
-
-<ion-modal [keepContentsMounted]="true">
-  <ng-template>
-    <ion-datetime #datetime id="datetime" presentation="date" color="secondary" [formatOptions]="{
-        date: {
-          month: 'long',
-          day: '2-digit',
-          year: 'numeric'
-        }}" (ionChange)="confirmSelectedDate($event)">
-      <ion-buttons slot="buttons">
-        <ion-button color="danger" (click)="datetime.cancel()">Cancel</ion-button>
-        <ion-button color="secondary" (click)="datetime.confirm(true)">Confirm</ion-button>
-      </ion-buttons>
-    </ion-datetime>
-  </ng-template>
-</ion-modal>
