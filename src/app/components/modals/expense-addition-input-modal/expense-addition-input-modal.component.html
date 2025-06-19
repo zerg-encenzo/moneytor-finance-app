@@ -4,7 +4,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-title class="ion-no-padding" style="padding-left: 5px;">
-            <ion-icon name="arrow-back" style="font-size: 20px; padding-right: 15px;" class="ion-float-left"></ion-icon>
+            <ion-icon name="arrow-back" style="font-size: 20px; padding-right: 15px;" class="ion-float-left" (click)="exit()"></ion-icon>
             Add Expense
           </ion-title>
         </ion-col>
@@ -13,8 +13,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding-top">
-  <ion-grid fixed>
+<ion-content>
+  <ion-grid style="padding-top: 10px;" fixed>
     <ion-row>
       <!-- Fund Source Selection -->
       <ion-col size="12">
@@ -27,9 +27,10 @@
       </ion-col>
 
       <!-- Expense Type Selection -->
-      <ion-col size="12">
+      <ion-col size="12" sizeLg="6">
         <ion-select interface="popover" label="Type" label-placement="floating" fill="outline" required="true"
-          (ionChange)="onExpenseTypeChange($event)" [(ngModel)]="selectedExpenseType">
+          (ionChange)="onExpenseTypeChange($event)" [(ngModel)]="selectedExpenseType"
+          [disabled]="(selectedFundSource == null || selectedFundSource=='')">
           @for (expense of expenseType; track expense) {
           <ion-select-option [value]="expense.Name"> {{ expense.Name }}</ion-select-option>
           }
@@ -37,14 +38,21 @@
       </ion-col>
 
       <!-- Category Selection -->
-      <ion-col size="12">
+      <ion-col size="12" sizeLg="6">
         <ion-select interface="popover" label="Category" label-placement="floating" fill="outline" required="true"
-          (ionChange)="onCategoryChange($event)" [(ngModel)]="selectedCategory.Category"
+          (ionChange)="onCategoryChange($event)" [(ngModel)]="selectedCategory.Name"
           [disabled]="(selectedExpenseType == null || selectedExpenseType=='')">
           @for (category of Categories; track category) {
-          <ion-select-option [value]="category.Category">{{ category.Category }}</ion-select-option>
+          <ion-select-option [value]="category.Name">{{ category.Name }}</ion-select-option>
           }
         </ion-select>
+      </ion-col>
+
+      <!-- Amount Input -->
+      <ion-col size="12">
+        <ion-input label="Amount (Php)" label-placement="floating" fill="outline" placeholder="Enter Expense Amount"
+          type="number" required="true" [disabled]="(selectedExpenseType == null || selectedExpenseType=='')"
+          [(ngModel)]="expenseAmount"></ion-input>
       </ion-col>
 
       <!-- Remarks / Description Input -->
@@ -54,12 +62,6 @@
           [(ngModel)]="expenseRemarks"></ion-input>
       </ion-col>
 
-      <!-- Amount Input -->
-      <ion-col size="12">
-        <ion-input label="Amount (Php)" label-placement="floating" fill="outline" placeholder="Enter Expense Amount"
-          type="number" required="true" [disabled]="(selectedExpenseType == null || selectedExpenseType=='')"
-          [(ngModel)]="expenseAmount"></ion-input>
-      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

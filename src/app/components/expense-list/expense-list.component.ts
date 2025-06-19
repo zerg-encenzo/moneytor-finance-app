@@ -1,7 +1,7 @@
 import { Component, input, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonCardSubtitle, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon, IonLabel, IonItem, IonList, IonGrid, IonCol, IonRow, ModalController } from "@ionic/angular/standalone";
-import { Expenses } from 'src/app/interfaces/expenses';
+import { Expenses } from 'src/app/interfaces/expenses.interface';
 import { ExpenseItemDetailModalComponent } from '../modals/expense-item-detail-modal/expense-item-detail-modal.component';
 
 @Component({
