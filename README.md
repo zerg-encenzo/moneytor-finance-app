@@ -3,5 +3,5 @@ Repository Containing the second version of all the front-end code for the Money
 
 Technologies used for the front-end development of Moneytor:
 - Ionic Framework
-- Angular Framework
-- Capacitor
+- Angular (Standalone Components)
+- Capacitor (For Android cross-platform)
