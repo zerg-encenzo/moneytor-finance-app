@@ -1,7 +1,7 @@
 <div class="sticky-header hide-on-web">
   <div class="sticky-inner">
     <!-- MOBILE: Daily Summary & Filter Options -->
-    <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
+    <app-expense-daily-summary [list]="expenseListFiltered" (date)="filterListByDate($event)"></app-expense-daily-summary>
     <!-- MOBILE: Add Expense -->
     <ion-button expand="block" fill="outline" color="secondary" class="add-expense-button" (click)="openAddExpenseInputModal()">
       Add Expense
@@ -18,7 +18,7 @@
     <!-- LEFT SIDE: summary section -->
     <ion-col size="12" sizeLg="4" class="ion-no-padding hide-on-mobile">
       <!-- WEB: Daily Summary & Filter Options -->
-      <app-expense-daily-summary [list]="expenseList"></app-expense-daily-summary>
+      <app-expense-daily-summary [list]="expenseListFiltered" (date)="filterListByDate($event)"></app-expense-daily-summary>
       <!-- MOBILE: Add Expense -->
       <ion-button expand="block" fill="outline" color="secondary" class="add-expense-button" (click)="openAddExpenseInputModal()">
         Add Expense

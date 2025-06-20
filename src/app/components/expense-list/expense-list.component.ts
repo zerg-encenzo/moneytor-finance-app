@@ -28,12 +28,16 @@ export class ExpenseListComponent implements OnInit {
     const modal = await this.modal.create({
       component: ExpenseItemDetailModalComponent,
       cssClass: "small-modal",
+      backdropDismiss: false,
       componentProps: {
         expenseItem: selectedExpenseItem,
       }
     });
-    modal.onDidDismiss().then((data) => {
-      console.log('Modal dismissed with data:', data);
+    modal.onDidDismiss().then((response) => {
+      if(response.data != null) {
+        this.expenseListDisplay = this.expenseListDisplay.filter(item => item.ItemCode !== response.data.ItemCode);
+      }
+      console.log('Modal dismissed with data:', response);
     });
     modal.present();
   }

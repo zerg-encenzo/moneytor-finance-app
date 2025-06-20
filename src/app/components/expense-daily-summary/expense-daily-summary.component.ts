@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { IonCardContent, IonCard, IonIcon, IonRow, IonCol, IonText, IonButton, ModalController, IonModal, IonDatetime, IonButtons } from "@ionic/angular/standalone";
+import { Component, Input,Output, OnInit, ViewChild, EventEmitter } from '@angular/core';
+import { IonCardContent, IonCard, IonIcon, IonRow, IonCol, IonText, IonButton, IonModal, IonDatetime, IonButtons } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 import { Expenses } from 'src/app/interfaces/expenses.interface';
-import { UserProfile } from 'src/app/interfaces/user-profile';
+import { UserProfile } from 'src/app/utilities/user-profile';
 
 @Component({
   selector: 'app-expense-daily-summary',
@@ -20,6 +20,8 @@ export class ExpenseDailySummaryComponent implements OnInit {
     this.calculateDailyExpenses();
   }
 
+  @Output() date = new EventEmitter<Date>();
+
   private expenseList: Expenses[] = [];
 
   //Display Properties:
@@ -28,9 +30,7 @@ export class ExpenseDailySummaryComponent implements OnInit {
 
   public userNameDisplay: string = UserProfile.UserFirstName //+ ' ' + UserProfile.UserLastName; //Display user name in the summary
 
-  constructor(
-    private modal: ModalController
-  ) { }
+  constructor() { }
 
   ngOnInit() {
 
@@ -44,28 +44,13 @@ export class ExpenseDailySummaryComponent implements OnInit {
     console.log('Total Daily Expenses:', this.totalDailyExpenses);
   }
 
-
-  // //Open Filters Modal:
-  // async openFiltersModal() {
-  //   const modal = await this.modal.create({
-  //     component: ExpenseFilterOptionsModalComponent,
-  //     cssClass: "small-modal",
-  //     componentProps: {
-  //       expenseList: this.expenseList,
-  //     }
-  //   });
-  //   modal.onDidDismiss().then((data) => {
-  //     console.log('Modal dismissed with data:', data);
-  //   });
-  //   modal.present();
-  // }
-
   openDatePickerModal() {
     this.dateModal.present();
   }
 
   confirmSelectedDate(event: any) {
-    console.log('Selected Date:', event.detail.value);
+    // console.log('Selected Date:', event.detail.value);
     this.selectedDate = event.detail.value || new Date();
+    this.date.emit(this.selectedDate);
   }
 }

@@ -1,6 +1,7 @@
 
 //Interface for each expense item:
 export interface Expenses {
+    ItemCode: string;
     Ionicon: string;        // Icon representing the expense category
     Source: string;         // Source of the expense (e.g., Cash, Card)
     Date: Date;             // Date of the expense in ISO format (YYYY-MM-DD)

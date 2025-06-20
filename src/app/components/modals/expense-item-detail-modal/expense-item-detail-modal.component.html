@@ -23,7 +23,7 @@
           <!-- Category -->
           <ion-item lines="inset" [disabled]="isEditing">
             <ion-label position="stacked" [color]="colorMainTheme">Category:</ion-label>
-            <ion-input [value]="itemCategory" [readonly]="!isEditing"> <ion-icon [name]="itemIonicon" slot="start"
+            <ion-input [value]="expenseItem.Category" [readonly]="!isEditing"> <ion-icon [name]="expenseItem.Ionicon" slot="start"
                 [color]="colorMainTheme"></ion-icon></ion-input>
           </ion-item>
         </ion-col>
@@ -31,7 +31,8 @@
           <!-- Amount -->
           <ion-item lines="full">
             <ion-label position="stacked" [color]="colorMainTheme">Amount (Php):</ion-label>
-            <ion-input [value]="itemAmount" [readonly]="!isEditing" style="font-weight: bold;" type="number"> <ion-icon
+            <ion-input [(ngModel)]="expenseItem.Amount" [value]="expenseItem.Amount" [readonly]="!isEditing" (ionInput)="checkChanges()" 
+                style="font-weight: bold;" type="number"> <ion-icon
                 name="pricetags" slot="start" [color]="colorMainTheme"></ion-icon> </ion-input>
           </ion-item>
         </ion-col>
@@ -44,7 +45,7 @@
           <!-- Date -->
           <ion-item lines="inset" [disabled]="isEditing">
             <ion-label position="stacked" [color]="colorMainTheme">Date:</ion-label>
-            <ion-input [value]="itemExpenseDate | date: 'MMMM dd, YYYY'" [readonly]="!isEditing"> <ion-icon
+            <ion-input [value]="expenseItem.Date| date: 'MMMM dd, YYYY'" [readonly]="!isEditing"> <ion-icon
                 name="calendar" slot="start" [color]="colorMainTheme"></ion-icon> </ion-input>
           </ion-item>
         </ion-col>
@@ -52,7 +53,7 @@
           <!-- Source -->
           <ion-item lines="full" [disabled]="isEditing">
             <ion-label position="stacked" [color]="colorMainTheme">Source:</ion-label>
-            <ion-input [value]="itemSourceOfFund" [readonly]="!isEditing"> <ion-icon name="wallet" slot="start"
+            <ion-input [value]="expenseItem.Source" [readonly]="!isEditing"> <ion-icon name="wallet" slot="start"
                 [color]="colorMainTheme"></ion-icon> </ion-input>
           </ion-item>
         </ion-col>
@@ -62,7 +63,7 @@
     <!-- Type -->
     <ion-item [disabled]="isEditing">
       <ion-label position="stacked" [color]="colorMainTheme">Type:</ion-label>
-      <ion-input [value]="itemType" [readonly]="!isEditing"> <ion-icon name="bag-check" slot="start"
+      <ion-input [value]="expenseItem.Type" [readonly]="!isEditing"> <ion-icon name="bag-check" slot="start"
           [color]="colorMainTheme"></ion-icon> </ion-input>
     </ion-item>
 
@@ -70,11 +71,13 @@
     <ion-item>
       <ion-label position="stacked" [color]="colorMainTheme">Remarks:</ion-label>
       <ion-input 
-        [value]="itemRemarks" 
-        [readonly]="!isEditing" 
-        [placeholder]="itemRemarks ? 'Enter more information about this expense.' : 'No information'"> 
+        [value]="expenseItem.Remarks"
+        [(ngModel)] = "expenseItem.Remarks"
+        [readonly]="!isEditing"
+        (ionInput)="checkChanges()"
+        [placeholder]="expenseItem.Remarks ? 'Enter more information about this expense.' : 'No information'"> 
         <ion-icon name="information-circle" slot="start"
-          [color]="itemRemarks ? colorMainTheme : 'danger'">
+          [color]="expenseItem.Remarks ? colorMainTheme : 'danger'">
         </ion-icon> 
       </ion-input>
     </ion-item>
@@ -98,7 +101,7 @@
           }
           @else {
           <!-- Discard -->
-          <ion-button color="danger" fill="outline" expand="block" (click)="editExpense(button.discard)">
+          <ion-button color="medium" expand="block" (click)="editExpense(button.discard)">
             <ion-icon slot="start" name="trash"></ion-icon> {{ button.discard }}
           </ion-button>
           }
@@ -114,7 +117,7 @@
           }
           @else {
           <!-- Save Changes Button -->
-          <ion-button color="secondary" fill="outline" expand="block" (click)="editExpense(button.save)">
+          <ion-button color="secondary" expand="block" (click)="editExpense(button.save)" [disabled]="!isChanged">
             <ion-icon slot="start" name="create"></ion-icon> {{ button.save }}
           </ion-button>
           }
