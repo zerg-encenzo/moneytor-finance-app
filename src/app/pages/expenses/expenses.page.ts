@@ -25,6 +25,9 @@ export class ExpensesPage implements OnInit {
 
   public title: string = 'Moneytor';
 
+  //ITEM CODE GENERATION SIMULATION:
+  public itemCodeLastNumber: number = 3;
+
   public expenseList: Expenses[] = [
     {
       Ionicon: 'fast-food',
@@ -33,7 +36,8 @@ export class ExpensesPage implements OnInit {
       Remarks: 'Lunch at the new cafe',
       Type: ExpenseType.VariableExpenses,
       Source: 'Cash',
-      Date: new Date()
+      Date: new Date(),
+      ItemCode: 'AB12XXXXX'
     },
     {
       Ionicon: 'restaurant',
@@ -42,7 +46,8 @@ export class ExpensesPage implements OnInit {
       Remarks: 'Dinner with friends',
       Type: ExpenseType.VariableExpenses,
       Source: 'SeaBank',
-      Date: new Date()
+      Date: new Date(),
+      ItemCode: 'HELLO7ZZZ'
     },
     {
       Ionicon: 'pizza',
@@ -51,197 +56,9 @@ export class ExpensesPage implements OnInit {
       Remarks: 'Evening snacks',
       Type: ExpenseType.VariableExpenses,
       Source: 'Metrobank',
-      Date: new Date()
+      Date: new Date(),
+      ItemCode: 'CODE12345'
     },
-    // {
-    //   Ionicon: 'fast-food',
-    //   Category: 'Food',
-    //   Amount: 150,
-    //   Remarks: 'Lunch at the new cafe',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Cash',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'restaurant',
-    //   Category: 'Dining Out',
-    //   Amount: 200,
-    //   Remarks: 'Dinner with friends',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'SeaBank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'pizza',
-    //   Category: 'Snacks',
-    //   Amount: 50,
-    //   Remarks: 'Evening snacks',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Metrobank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'fast-food',
-    //   Category: 'Food',
-    //   Amount: 150,
-    //   Remarks: 'Lunch at the new cafe',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Cash',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'restaurant',
-    //   Category: 'Dining Out',
-    //   Amount: 200,
-    //   Remarks: 'Dinner with friends',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'SeaBank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'pizza',
-    //   Category: 'Snacks',
-    //   Amount: 50,
-    //   Remarks: 'Evening snacks',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Metrobank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'fast-food',
-    //   Category: 'Food',
-    //   Amount: 150,
-    //   Remarks: 'Lunch at the new cafe',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Cash',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'restaurant',
-    //   Category: 'Dining Out',
-    //   Amount: 200,
-    //   Remarks: 'Dinner with friends',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'SeaBank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'pizza',
-    //   Category: 'Snacks',
-    //   Amount: 50,
-    //   Remarks: 'Evening snacks',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Metrobank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'fast-food',
-    //   Category: 'Food',
-    //   Amount: 150,
-    //   Remarks: 'Lunch at the new cafe',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Cash',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'restaurant',
-    //   Category: 'Dining Out',
-    //   Amount: 200,
-    //   Remarks: 'Dinner with friends',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'SeaBank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'pizza',
-    //   Category: 'Snacks',
-    //   Amount: 50,
-    //   Remarks: 'Evening snacks',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Metrobank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'fast-food',
-    //   Category: 'Food',
-    //   Amount: 150,
-    //   Remarks: 'Lunch at the new cafe',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Cash',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'restaurant',
-    //   Category: 'Dining Out',
-    //   Amount: 200,
-    //   Remarks: 'Dinner with friends',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'SeaBank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'pizza',
-    //   Category: 'Snacks',
-    //   Amount: 50,
-    //   Remarks: 'Evening snacks',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Metrobank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'fast-food',
-    //   Category: 'Food',
-    //   Amount: 150,
-    //   Remarks: 'Lunch at the new cafe',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Cash',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'restaurant',
-    //   Category: 'Dining Out',
-    //   Amount: 200,
-    //   Remarks: 'Dinner with friends',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'SeaBank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'pizza',
-    //   Category: 'Snacks',
-    //   Amount: 50,
-    //   Remarks: 'Evening snacks',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Metrobank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'fast-food',
-    //   Category: 'Food',
-    //   Amount: 150,
-    //   Remarks: 'Lunch at the new cafe',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Cash',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'restaurant',
-    //   Category: 'Dining Out',
-    //   Amount: 200,
-    //   Remarks: 'Dinner with friends',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'SeaBank',
-    //   Date: new Date()
-    // },
-    // {
-    //   Ionicon: 'pizza',
-    //   Category: 'Snacks',
-    //   Amount: 50,
-    //   Remarks: 'Evening snacks',
-    //   Type: ExpenseType.VariableExpenses,
-    //   Source: 'Metrobank',
-    //   Date: new Date()
-    // },
   ];
 
   //Searchbar Parameters:
@@ -294,6 +111,17 @@ export class ExpensesPage implements OnInit {
       expense.Remarks?.toLowerCase().includes(query));
   }
 
+  filterListByDate(selectedDate: Date) {
+    this.expenseListFiltered = this.expenseList.filter(expense => this.formatDateToYMD(expense.Date) == selectedDate.toString());
+  }
+
+  formatDateToYMD(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
 
   async openAddExpenseInputModal() {
     const modal = await this.modal.create({
@@ -304,17 +132,18 @@ export class ExpensesPage implements OnInit {
       console.log('Modal dismissed with data:', response.data);
       if (response.data != null) {
 
-        let item: ExpenseInput = response.data;
+        let item: Expenses = response.data;
 
         //Preparing payload to add new expense:
         const newExpense: Expenses = {
-          Ionicon: item.Category.Ionicon,
+          Ionicon: item.Ionicon,
           Source: item.Source,
           Date: new Date(), //Date today
           Type: item.Type,
-          Category: item.Category.Name,
+          Category: item.Category,
           Amount: item.Amount,
-          Remarks: item.Remarks
+          Remarks: item.Remarks,
+          ItemCode: item.ItemCode
         }
         this.addNewExpense(newExpense);
       }

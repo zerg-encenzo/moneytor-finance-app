@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonInput, IonCol, IonRow, IonSelect, IonSelectOption, IonTitle, IonContent, IonToolbar, IonFooter, IonIcon, IonButton, IonGrid, IonHeader, ModalController } from "@ionic/angular/standalone";
 import { FormsModule } from '@angular/forms';
-import { ExpenseInput, CategoryInterface } from 'src/app/interfaces/expenses.interface';
+import { Expenses, CategoryInterface } from 'src/app/interfaces/expenses.interface';
 
 
 @Component({
@@ -88,17 +88,29 @@ export class ExpenseAdditionInputModalComponent implements OnInit {
 
   //Add Expense Function:
   addExpense() {
-    const newExpense: ExpenseInput = {
+    const newExpense: Expenses = {
       Source: this.selectedFundSource,
       Type: this.selectedExpenseType,
-      Category: this.selectedCategory,
+      Category: this.selectedCategory.Name,
       Amount: this.expenseAmount || 0,
       Remarks: this.expenseRemarks,
+      ItemCode: this.generateUniqueCode(),
+      Ionicon: this.selectedCategory.Ionicon,
+      Date: new Date()
     }
+    //TODO: Make this a POST Request to add expense to the database.
     this.exit(newExpense);
   }
 
-  exit(returnObject?: any){
+  generateUniqueCode(): string {
+    const base36 = Date.now().toString(36).toUpperCase();
+    const random = Math.random().toString(36).substring(2, 5).toUpperCase();
+    const code = (base36 + random).substring(0, 9);
+    console.log("Generated Code: " + code);
+    return code.padEnd(9, 'MNYTR');
+  }
+
+  exit(returnObject?: any) {
     this.expenseInputModal.dismiss(returnObject || null);
   }
 }
